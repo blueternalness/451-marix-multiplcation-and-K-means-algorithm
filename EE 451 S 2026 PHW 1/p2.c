@@ -6,6 +6,7 @@
 
 #define h  800 
 #define w  800
+#define MAT_ITER 30
 
 #define input_file  "input.raw"
 #define output_file "output.raw"
@@ -33,7 +34,7 @@ int main(int argc, char** argv){
 
     int num_pixels = w * h;
 
-    for (int iter = 0; iter < 30; iter++) {
+    for (int iter = 0; iter < MAT_ITER; iter++) {
         
         for (int k = 0; k < 4; k++) {
             sums[k] = 0;
@@ -66,7 +67,7 @@ int main(int argc, char** argv){
     for (int j = 0; j < num_pixels; j++) {
         unsigned char pixel = a[j];
         float min_dist = FLT_MAX;
-        int closest_cluster = -1;
+        int closest_cluster;
 
         for (int k = 0; k < 4; k++) {
             float dist = fabsf(pixel - means[k]);
