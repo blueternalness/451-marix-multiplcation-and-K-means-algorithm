@@ -59,9 +59,15 @@ int main(int argc, char *argv[]) {
 		if( clock_gettime( CLOCK_REALTIME, &stop) == -1 ) { perror("clock gettime");}		
 		time = (stop.tv_sec - start.tv_sec)+ (double)(stop.tv_nsec - start.tv_nsec)/1e9;
 		
-		printf("Number of FLOPs = %lu, Execution time = %f sec,\n%lf MFLOPs per sec\n", 2*n*n*n, time, 1/time/1e6*2*n*n*n);		
+		//printf("Number of FLOPs = %lu, Execution time = %f sec,\n%lf MFLOPs per sec\n", 2*n*n*n, time, 1/time/1e6*2*n*n*n);		
+		printf("Number of FLOPs = %lu\n", (unsigned long)(2.0*n*n*n));
+		printf("Execution time = %.0f ns\n", time * 1e9);
+		printf("Execution time = %f sec\n", time);
+		printf("%.0f FLOPs per sec\n", (2.0 * n * n * n) / time);
+		printf("%.4f MFLOPs per sec\n", ((2.0 * n * n * n) / time) / 1e6);		
 		printf("C[100][100]=%f\n", C[100][100]);
 		
+
 		// release memory
 		for (i=0; i<n; i++) {
 			free(A[i]);
