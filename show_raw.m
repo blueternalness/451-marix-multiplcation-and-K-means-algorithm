@@ -6,3 +6,5 @@ m=m';
 m1=m./255;
 figure(1)
 imshow(m1);
+imwrite(m1, 'output.png');
+
